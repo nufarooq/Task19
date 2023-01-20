@@ -1,0 +1,32 @@
+﻿@model Task19_MVC.Models.User
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+
+    @using (Html.BeginForm("Validate", "Home", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true);
+
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+        @Html.ValidationMessageFor(m => m.UserName)
+
+        <br />
+        @Html.Label("Cash")
+        @Html.RadioButtonFor(m => m.PaymentMode, "Cash")
+
+        @Html.Label("Card")
+        @Html.RadioButtonFor(m => m.PaymentMode, "Card")
+        @Html.ValidationMessageFor(m => m.PaymentMode)
+        <br /><br />
+        @Html.DropDownListFor(m => m.CardType, Model.CardTypeList, "---Select---")
+        @Html.ValidationMessageFor(m => m.CardType)
+        <br /><br />
+        <input type="submit" name="btnSubmit" value="Submit" />
+        <br /><br />
+        @ViewBag.Message
+    }
+</div>
